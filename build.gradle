@@ -26,7 +26,7 @@ allprojects {
 
     ext {
         groupId = 'id.mncinnovation'
-        versionId = '1.0.9-SNAPSHOT'
+        versionId = '1.1.0-SNAPSHOT'
         gitProjectUrl = ""
         gitUrl = ""
     }
