@@ -55,8 +55,6 @@ class LivenessDetectionActivity : BaseCameraActivity(), LivenessDetectionListene
         graphicOverlay = uiContainer.findViewById(R.id.graphic_overlay)
         ivBack = uiContainer.findViewById(R.id.iv_back)
         ivBack.setOnClickListener {
-            val livenessResult = LivenessResult(false, "Cancel by user")
-            setResult(RESULT_OK, Intent().putExtra(EXTRA_RESULT,livenessResult))
             finish()
         }
         tgbTextToSpeech = uiContainer.findViewById(R.id.tg_mute)
