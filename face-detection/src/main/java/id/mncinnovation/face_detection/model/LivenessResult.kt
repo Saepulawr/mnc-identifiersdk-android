@@ -22,6 +22,7 @@ data class LivenessResult(
     data class DetectionResult(
         val detectionMode: DetectionMode,
         val image: Uri?,
+        val imagePath: String?,
         val timeMilis: Long?): Parcelable
 
     fun getBitmap(context: Context, detectionMode: DetectionMode): Bitmap? {

@@ -196,8 +196,9 @@ class LivenessDetectionAnalyzer(
                     context.filesDir.absolutePath,
                     "img_${it.name}.jpg")
             }
+            val imagePath = context.filesDir.absolutePath + "img_${it.name}.jpg"
             Log.d(TAG, "nextDetection: $fileUri");
-            detectionResults.add(LivenessResult.DetectionResult(it, fileUri, startDetectionTime?.let { time -> System.currentTimeMillis()-time }))
+            detectionResults.add(LivenessResult.DetectionResult(it, fileUri,imagePath, startDetectionTime?.let { time -> System.currentTimeMillis()-time }))
         }
         queueDetectionMode.removeFirst()
         if (queueDetectionMode.isEmpty()) {
