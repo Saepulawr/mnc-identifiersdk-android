@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ToggleButton
-import androidx.appcompat.app.AlertDialog
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
@@ -44,6 +43,9 @@ class LivenessDetectionActivity : BaseCameraActivity(), LivenessDetectionListene
     private var countdownTime = COUNTDOWN_TIME
     private var currentDetection: DetectionMode? = null
 
+    override fun onBackPressed() {
+        backButton()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         uiContainer = layoutInflater.inflate(
@@ -55,7 +57,7 @@ class LivenessDetectionActivity : BaseCameraActivity(), LivenessDetectionListene
         graphicOverlay = uiContainer.findViewById(R.id.graphic_overlay)
         ivBack = uiContainer.findViewById(R.id.iv_back)
         ivBack.setOnClickListener {
-            finish()
+            backButton()
         }
         tgbTextToSpeech = uiContainer.findViewById(R.id.tg_mute)
         tgbTextToSpeech.setOnCheckedChangeListener { _, isChecked ->
@@ -202,7 +204,11 @@ class LivenessDetectionActivity : BaseCameraActivity(), LivenessDetectionListene
         setResult(RESULT_CANCELED, Intent().putExtra(EXTRA_RESULT, result))
         finish()
     }
-
+    private fun backButton(){
+        val livenessResult = LivenessResult(false, "Cancelled by user")
+        setResult(RESULT_OK, Intent().putExtra(EXTRA_RESULT,livenessResult))
+        finish()
+    }
     companion object {
         private const val TAG = "Liveness Detection"
         private const val COUNTDOWN_TIME = 20
